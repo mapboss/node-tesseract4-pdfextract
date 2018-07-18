@@ -9,7 +9,8 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys CEF9E52D \
 
 ENV TESSDATA_PREFIX /usr/local/share/tessdata
 
-RUN wget -O ${TESSDATA_PREFIX}/osd.traineddata https://github.com/tesseract-ocr/tessdata/raw/3.04.00/osd.traineddata \
+RUN mkdir -p ${TESSDATA_PREFIX} \
+        && wget -O ${TESSDATA_PREFIX}/osd.traineddata https://github.com/tesseract-ocr/tessdata/raw/3.04.00/osd.traineddata \
         && wget -O ${TESSDATA_PREFIX}/equ.traineddata https://github.com/tesseract-ocr/tessdata/raw/3.04.00/equ.traineddata \
         && wget -O ${TESSDATA_PREFIX}/eng.traineddata https://github.com/tesseract-ocr/tessdata/raw/4.00/eng.traineddata \
         && wget -O ${TESSDATA_PREFIX}/tha.traineddata https://github.com/tesseract-ocr/tessdata/raw/4.00/tha.traineddata
