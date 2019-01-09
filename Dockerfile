@@ -1,19 +1,14 @@
-FROM mapboss/node
+FROM node:8-alpine
 
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys CEF9E52D \
-        && echo "deb http://ppa.launchpad.net/alex-p/tesseract-ocr/ubuntu xenial main\ndeb-src http://ppa.launchpad.net/alex-p/tesseract-ocr/ubuntu xenial main " >> /etc/apt/sources.list \
-        && apt-get update \
-        && apt-get install tesseract-ocr -y \
-        && apt-get clean \
-        && apt-get autoremove
+RUN apk add --no-cache \
+        tesseract-ocr \
+        antiword \
+        pdftk \
+        poppler-utils \
+        ghostscript \
+        git
 
-RUN apt-get update \
-        && apt-get install -y pdftk \
-                              poppler-utils \
-                              ghostscript \
-                              git
-
-RUN npm install -g textract pdf-extract
+RUN npm install -g textract pdf-extract && npm cache clean --force
 
 ENV TESSDATA_PREFIX /usr/local/share/tessdata
 
