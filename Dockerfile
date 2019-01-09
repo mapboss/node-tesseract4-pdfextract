@@ -1,4 +1,4 @@
-FROM node:8-alpine
+FROM mapboss/node
 
 RUN apk add --no-cache \
         tesseract-ocr \
